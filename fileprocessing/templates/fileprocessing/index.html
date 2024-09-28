@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Processing with DRF</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #009688, #4DB6AC);
+            color: #333333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+        h1 {
+            color: #ffffff;
+            margin-bottom: 30px; 
+            font-size: 1.80rem; 
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5); 
+        }
+        .form-container {
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+            padding: 30px;
+            width: 100%;
+            max-width: 400px;
+            transition: transform 0.3s ease;
+        }
+        input[type="file"],
+        select,
+        button {
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #00796B;
+            font-size: 1rem;
+            width: 100%;
+            margin-bottom: 15px;
+            transition: border 0.3s ease;
+        }
+        button {
+            background-color: #00796B;
+            color: #ffffff;
+            font-weight: bold;
+            cursor: pointer;
+            border: none;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #004D40;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h1>Upload a File for Processing</h1>
+        <form id="fileUploadForm" method="POST" enctype="multipart/form-data" action="/process-file/">
+            {% csrf_token %}
+            <input type="file" name="file" required>
+            <select name="action">
+                <option value="line_count">Count Lines</option>
+                <option value="word_count">Count Words</option>
+            </select>
+            <button type="submit">Upload and Process</button>
+        </form>
+    </div>
+</body>
+</html>
